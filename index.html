@@ -26,12 +26,6 @@
             justify-content: center;
         }
 
-        /* Dark Mode Styles */
-        body.dark-mode {
-            background: #2e2e2e;
-            color: #f1f1f1;
-        }
-
         /* Header Rectangle */
         .header-rectangle {
             width: 80%;
@@ -180,43 +174,6 @@
             display: block;
         }
 
-        /* Search Bar Styles */
-        #search-bar {
-            width: 80%;
-            max-width: 600px;
-            margin-top: 20px;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 15px;
-            border: 2px solid #5c3d99;
-            background-color: #1a1a1a;
-            color: #fff;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        #search-bar:focus {
-            background-color: #5c3d99;
-            color: #1a1a1a;
-            outline: none;
-        }
-
-        /* Dark Mode Button */
-        .dark-mode-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #5c3d99;
-            color: #fff;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .dark-mode-btn:hover {
-            background-color: #f1f1b3;
-            color: #1a1a1a;
-        }
-
     </style>
 </head>
 <body>
@@ -229,12 +186,6 @@
         <span class="star bottom-left">✧</span>
         <span class="star bottom-right">✧</span>
     </div>
-
-    <!-- Dark Mode Button -->
-    <button class="dark-mode-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-
-    <!-- Search Bar -->
-    <input type="text" id="search-bar" placeholder="Search..." oninput="searchWiki()" />
 
     <!-- Button Container -->
     <div class="button-container">
@@ -293,18 +244,20 @@
     <script>
         // Function to show the selected page and hide others
         function showPage(pageId) {
+            // Hide all pages
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => {
                 page.classList.remove('active-page');
             });
 
+            // Show the selected page
             const activePage = document.getElementById(pageId);
             activePage.classList.add('active-page');
+        }
 
-            // Add glowing effect on button press
-            const buttons = document.querySelectorAll('.cute-button');
-            buttons.forEach(button => {
-                button.classList.remove('pressed');
-            });
+        // Set the initial page (optional)
+        showPage('gaia');
+    </script>
 
-            const active
+</body>
+</html>
