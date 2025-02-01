@@ -16,7 +16,7 @@
         /* Global Styles */
         body {
             font-family: 'Arial', sans-serif;
-            background: #1a1a1a; /* Dark background for contrast */
+            background: #1a1a1a;
             color: #fff;
             height: 100%;
             padding: 20px;
@@ -24,6 +24,30 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background: #121212;
+            color: #f1f1f1;
+        }
+
+        /* Toggle Switch Button */
+        .dark-mode-toggle {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background-color: #f1f1b3;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: #5c3d99;
         }
 
         /* Header Rectangle */
@@ -45,14 +69,9 @@
             justify-content: center;
         }
 
-        .header-rectangle.touched {
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px #f1f1b3;
-            border: 5px solid #f1f1b3;
-        }
-
-        .header-rectangle:hover {
-            box-shadow: 0 0 30px #f1f1b3;
+        /* Dark Mode Header */
+        .dark-mode .header-rectangle {
+            background-color: #121212;
             border: 5px solid #f1f1b3;
         }
 
@@ -99,84 +118,13 @@
                 transform: translateY(-2px);
             }
         }
-
-        /* Button Container to align buttons horizontally */
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            width: 80%;
-            max-width: 600px;
-            margin-top: 20px;
-            z-index: 0;
-            flex-wrap: wrap;
-        }
-
-        /* Button Styles */
-        .cute-button {
-            padding: 10px 20px;
-            background-color: #5c3d99;
-            color: #1a1a1a;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            box-shadow: 0 0 10px #5c3d99;
-            transition: all 0.1s ease-in-out;
-            margin: 5px;
-        }
-
-        .cute-button.pressed {
-            background-color: #f1f1b3;
-            color: #5c3d99;
-            box-shadow: 0 0 15px #5c3d99;
-        }
-
-        .cute-button:hover {
-            background-color: #F1F1B3;
-            color: #1a1a1a;
-            box-shadow: 0 0 15px #5c3d99;
-            transform: translateY(-3px);
-        }
-
-        .button-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-        }
-
-        /* Specific button for "Other" */
-        .other-button {
-            padding: 8px 15px;
-            font-size: 14px;
-            background-color: #f1f1b3;
-            color: #1a1a1a;
-            box-shadow: none;
-            margin-top: 15px; /* Added margin to separate it from main buttons */
-        }
-
-        /* Center the "Other" button */
-        .other-button-container {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-
-        /* Pages for content */
-        .page {
-            display: none;
-            width: 100%;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .active-page {
-            display: block;
-        }
-
+        
     </style>
 </head>
 <body>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
 
     <!-- Header with Stars -->
     <div class="header-rectangle" id="header-rectangle">
@@ -187,85 +135,21 @@
         <span class="star bottom-right">✧</span>
     </div>
 
-    <!-- Button Container -->
-    <div class="button-container">
-        <!-- Gaia Button -->
-        <button class="cute-button" onclick="showPage('gaia')">
-            <img class="button-icon" src="https://craizae.neocities.org/gaialeaf.png" alt="Gaia Icon">Gaia
-        </button>
-
-        <!-- Gaians Button -->
-        <button class="cute-button" onclick="showPage('gaians')">
-            <img class="button-icon" src="https://craizae.neocities.org/gaialeaf.png" alt="Gaians Icon">Gaians
-        </button>
-
-        <!-- Creatures Button -->
-        <button class="cute-button" onclick="showPage('creatures')">
-            <img class="button-icon" src="https://craizae.neocities.org/gaialeaf.png" alt="Creatures Icon">Creatures
-        </button>
-
-        <!-- Starfall Button -->
-        <button class="cute-button" onclick="showPage('starfall')">
-            <img class="button-icon" src="https://craizae.neocities.org/gaialeaf.png" alt="Starfall Icon">Starfall
-        </button>
-    </div>
-
-    <!-- "Other" Button below main buttons -->
-    <div class="other-button-container">
-        <button class="cute-button other-button" onclick="showPage('other')">Other</button>
-    </div>
-
-    <!-- Pages (hidden by default) -->
-    <div id="gaia" class="page">
-        <h2>Gaia Content</h2>
-        <p>Here is some content about Gaia.</p>
-    </div>
-
-    <div id="gaians" class="page">
-        <h2>Gaians Content</h2>
-        <p>Here is some content about Gaians.</p>
-    </div>
-
-    <div id="creatures" class="page">
-        <h2>Creatures Content</h2>
-        <p>Here is some content about Creatures.</p>
-    </div>
-
-    <div id="starfall" class="page">
-        <h2>Starfall Content</h2>
-        <p>Here is some content about Starfall.</p>
-    </div>
-
-    <div id="other" class="page">
-        <h2>Other Content</h2>
-        <p>Here is some miscellaneous content.</p>
-    </div>
+    <!-- Content of the page -->
+    <h1>Welcome to Starfall Wiki</h1>
 
     <script>
-        // Function to show the selected page and hide others
-        function showPage(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active-page');
-            });
-
-            // Show the selected page
-            const activePage = document.getElementById(pageId);
-            activePage.classList.add('active-page');
-
-            // Add glowing effect on button press
-            const buttons = document.querySelectorAll('.cute-button');
-            buttons.forEach(button => {
-                button.classList.remove('pressed');
-            });
-
-            const activeButton = [...buttons].find(button => button.getAttribute('onclick').includes(pageId));
-            if (activeButton) activeButton.classList.add('pressed');
+        // Check for dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
         }
 
-        // Set the initial page (optional)
-        showPage('gaia');
+        // Toggle Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        }
     </script>
 
 </body>
