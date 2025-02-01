@@ -30,7 +30,7 @@
 
         /* Starry background */
         .stars {
-            position: absolute;
+            position: fixed; /* Changed to fixed to cover entire viewport */
             top: 0;
             left: 0;
             width: 100%;
@@ -38,7 +38,7 @@
             background: url('https://www.transparenttextures.com/patterns/stardust.png');
             background-size: 400px 400px; /* Bigger star tiles */
             animation: moveStars 60s linear infinite; /* Movement of stars */
-            z-index: -1; /* Put the stars behind other elements */
+            z-index: -1; /* Ensures stars are behind other elements */
         }
 
         /* Keyframe animation for star movement */
